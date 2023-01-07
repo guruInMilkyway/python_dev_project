@@ -1,0 +1,4 @@
+With Temp as (SELECT *, 
+     		      Lag(price, 1) OVER( ORDER BY marketDate ASC) AS lag_price FROM Prices)
+	select prices_with_lag_table.marketDate from Temp prices_with_lag_table 
+	where prices_with_lag_table.price > prices_with_lag_table.lag_price
